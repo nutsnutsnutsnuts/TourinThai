@@ -1,0 +1,310 @@
+/*============ Overall ==============*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*============ Navigation Bar ==============*/
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+nav{
+    background-color: black;
+    opacity: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.nav-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+.menu{
+    display: flex;
+}
+
+.menu li{
+    list-style: none;
+    margin: 2rem;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.logo a{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    margin-left: 20px;
+}
+
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    background-image: linear-gradient(to right, #020024, #4fbfb3, #00d4ff);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 25px;
+    transition: width 0.4s;
+}
+
+/* Keep the hover effect and also apply it when a menu item is active */
+nav a:hover::after,
+nav a.active::after {
+    width: 60%;
+}
+
+.menu-toggle {
+    display: none; /* Hide the hamburger icon */
+}
+
+
+/* ====== Form Section with Black Fade Background ====== */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(grey, black);
+    color: white; /* Ensure text is visible on dark background */
+    min-height: 100vh; /* Full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ====== Form Styling ====== */
+header{
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+p{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.rate-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+form {
+    margin-bottom: 5rem;
+    background: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8); /* Elegant shadow */
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 0.8s ease-in-out;
+    height: 669px;
+    
+}
+
+/* ====== Stars Section ====== */
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.star {
+    font-size: 40px;
+    cursor: pointer;
+    color: gray;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.star:hover, .star.selected {
+    color: gold;
+    transform: scale(1.2); /* Subtle hover effect */
+}
+
+/* ====== Comment Box ====== */
+.comment-box {
+    width: 100%;
+    height: 160px;
+    padding: 10px;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    resize: none;
+}
+
+/* ====== Submit Button ====== */
+button[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #ff9f00, #ff3c00);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ff3c00, #ff9f00);
+    transform: translateY(-3px);
+}
+
+/* ====== Fade-In Animation ====== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ====== Footer Styling ====== */
+.last-footer {
+    background: black;
+    padding: 1rem;
+    margin-top: auto; /* Push the footer to the bottom */
+  }
+  
+  .footer-con p {
+    color: white;
+    text-align: center;
+  }
+
+  
+@media screen and (max-width: 886px) {
+    /*============ Navigation Bar ==============*/
+    .nav-con{
+        padding: 1rem 0;
+        flex-direction: column;
+        height: 125px;
+    }
+    
+    .menu{
+        text-align: center;
+        flex-direction: row;
+    }
+    
+    .menu li{
+        margin-left: 0;
+        transition: 0.5s;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu li:hover {
+        background: #222;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide the hamburger icon */
+    }
+}
+ @media screen and (max-width:512px){
+    .nav-con{
+        padding: 1rem 0;
+        flex-direction: column;
+        height: 125px;
+    }
+    
+    
+    .menu li{
+        margin-left: 0;
+        transition: 0.5s;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu li:hover {
+        background: #222;
+    }
+
+}
+ @media screen and (max-width: 798px) {
+    .menu{
+        text-align: center;
+        flex-direction: row;
+    }
+    
+    .menu li{
+        margin-left: 0;
+        transition: 0.5s;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu li:hover {
+        background: #222;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide the hamburger icon */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-con {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8rem;
+    }
+
+    .menu li {
+        margin: 1rem 0;
+    }
+
+    .menu li a {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .menu-toggle {
+        display: contents;
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        margin-right: 20px;
+    }
+
+    .menu.active {
+        display: flex;
+        background-color: black;
+        
+    }
+}
+
+
+
+

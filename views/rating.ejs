@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Us</title>
+    <link rel="stylesheet" href="/public/css/rate.css">
+    
+</head>
+<body>
+     <!-- Navigation Bar-->
+     <script src="/public/js/main.js"></script>
+     <header class="header" id="header">
+        <div class="container"></div>
+        
+        <nav>
+            <div class="nav-con">
+                <div class="logo">
+                    <a href="/">TourinThai</a>
+                    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/recommendation">Recommendation</a></li>
+                    <li><a href="/compare">Compare</a> </li>
+                    <li><a href="/rate-us">Rate us</a></li>
+                    <li><a href="/about_us">About us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    <div class="rate-form">
+    <form id="rating-form">
+        <h2>Rate Us!</h2>
+        <p>Your feedback matters to us! Share your experience by rating your visit and leaving a comment. Whether it’s a compliment or a suggestion, your insights help us improve and provide a better experience for everyone. Thank you for taking the time to rate us!</p>
+        <label for="stars">Rating (1-5):</label>
+        <div class="stars" id="stars">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+        </div><br><br>
+        
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" class="comment-box" placeholder="Write your comment here"></textarea><br><br>
+        
+        
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+    </div>
+    <script>
+        // Star rating system
+        const stars = document.querySelectorAll('.star');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = star.getAttribute('data-value');
+                stars.forEach(s => s.classList.remove('selected'));
+                for (let i = 0; i < selectedRating; i++) {
+                    stars[i].classList.add('selected');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('rating-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const comment = document.getElementById('comment').value;
+
+            const response = await fetch('/rate-us', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Username: 'test_user',  // Replace with actual username
+                    Rating: selectedRating,
+                    Comment: comment,
+                })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = '/rate-us';
+            } else {
+                alert('Error: ' + data.message);
+            }
+        });
+    </script>
+
+<footer>
+    <div class="last-footer">
+        <div class="footer-con">
+            <p>&copy; 2024 TourinThai. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

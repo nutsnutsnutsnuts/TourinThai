@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation-TourinThai</title>
+    <link rel="stylesheet" href="/public/css/recommendation.css">
+
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <header class="header" id="header">
+        <div class="container"></div>
+        
+        <%- include('navbar.ejs') %>
+
+    <!-- Slide Show -->
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="/public/images/วัดวังคำ-กาฬสินธุ์.jpg" alt="">
+            <div class="text">Wat Wang Kham - Kalasin</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/พระมหาธาตุแก่นนคร-ขอนแก่น.jpg" alt="">
+            <div class="text">Phra Mahathat Kaen Nakhon-Khon Kaen</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/มอหินขาว-ชัยภูมิ.jpg" alt="">
+            <div class="text">White Stone - Chaiyaphum</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/วัดพระธาตุพนม-นครพนม.jpg" alt="">
+            <div class="text">Wat Phra That Phanom - Nakhon Phanom</div>
+        </div>
+
+        <!-- Next/Previous button -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(+1)">&#10095;</a>
+    </div> 
+
+    <br>   
+    <!-- Dot/Click -->   
+    <div class="all_dots" style="text-align: center;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+    <!-- Must in container we USE!!! -->   
+    <script src="/public/js/recommendation.js"></script>
+    </header>
+
+    <div class="category-container">
+        <ul class="category-menu">
+            <li><a href="/search?keyword=hotel">Hotels (<%= keywordCounts['hotel'] %>)</a></li>
+            <li><a href="/search?keyword=wat">Temples (Wat)  (<%= keywordCounts['wat'] %>)</a></li>
+            <li><a href="/search?keyword=park">Parks (<%= keywordCounts['park'] %>)</a></li>
+            <li><a href="/search?keyword=waterfall">Waterfalls  (<%= keywordCounts['waterfall'] %>)</a></li>
+            <li><a href="/search?keyword=cafe">Cafés  (<%= keywordCounts['cafe'] %>)</a></li>
+            <li><a href="/search?keyword=garden">Gardens  (<%= keywordCounts['garden'] %>)</a></li>
+            <li><a href="/search?keyword=Dam">Dams (<%= keywordCounts['Dam'] %>)</a></li>
+        </ul>
+    </div>
+    <!--=================== Recommedation Cards ======================-->
+    <section>
+    <div class="container-rec">
+        <% Object.values(reviews).forEach(function(item){%>
+            <button class="main-button" onclick="window.location.href='/<%= item.reviewId %>'">
+                <div class="main">
+                    <div class="img">
+                        <img src="<%= item.Image1 %>" alt="Place Image" onerror="console.log('Error loading image:', this.src='/public/images/no_img.png' )">
+                    </div>
+                    <div class="content">
+                        <div class="center">
+                            <h3><%= item.place%></h3>
+                            <h2>Sentiment Analysis: <%= item.xgboost_predicted_sentiment_label%> </h2>
+                            <h2>Positive score: <%= item.Positive%> </h2>
+                            <p><%= item.cleaned_text%></p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="ft-l">
+                            <p>Province: <%= item.province%></p>
+                        </div>
+                    </div>
+                </div>
+            </button>
+        <% }) %> 
+    </section>
+
+    <div class="pagination">
+        <!-- Previous Page Link -->
+        <% if (currentPage > 1) { %>
+            <a href="/recommendation?page=<%= currentPage - 1 %>">&laquo; Prev</a>
+        <% } %>
+    
+        <!-- Page Numbers -->
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="/recommendation?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>">
+                <%= i %>
+            </a>
+        <% } %>
+    
+        <!-- Next Page Link -->
+        <% if (currentPage < totalPages) { %>
+            <a href="/recommendation?page=<%= currentPage + 1 %>">Next &raquo;</a>
+        <% } %>
+    </div>
+    
+        
+    <footer>
+        <div class="last-footer">
+            <div class="footer-con">
+                <p>&copy; 2024 TourinThai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,700 @@
+/*============ Overall ==============*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+
+/*============ Slideshow Container ==============*/
+.slideshow-container {
+    max-width: 10000px;
+    position: relative;
+    margin: 0;
+  }
+
+.mySlides img{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+  }
+
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+/* Caption text */
+.text {
+    color: #ffffff;
+    font-size: 50px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    top: 260px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+  }
+
+.all_dots {
+  position: relative;
+  top: -3rem;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+
+/*============ Categorie Bar ==============*/
+.category-container{
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: black;
+  opacity: 100%;
+  border-radius: 20px;
+}
+
+
+.category-menu{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.category-menu li{
+  text-decoration: none;
+  list-style: none;
+  margin: 2rem;
+  position: relative;
+  
+}
+
+.category-menu li::after{
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-image: linear-gradient(to right,#020024,#4fbfb3,#00d4ff);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  transition: .4s;
+}
+
+.category-menu li:hover::after{
+  width:100%;
+}
+
+/*============ Top Places Cards1 ==============*/
+.container-rec{
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+  
+  
+}
+.main {
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+/*============ Cards1 button ==============*/
+.main-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  transform: translate(-12px,-12px);
+}
+
+.main-button:hover::before{
+  transform: translate(12px,12px);
+}
+
+.main-button:hover::after{
+  transform: translate(6px,6px);
+}
+
+.main-button:hover::after, .main-button:hover::before{
+  content: "";
+  position:absolute;
+  opacity: 0.3;
+  border-radius: 60px;
+  background: rgb(191, 191, 191);
+  width: 95%;
+  height: 95%;
+  left: 14px;
+  bottom: 25px;
+  z-index: -1;
+  transition: all 0.25s ease;
+}
+
+/*============ Top Places Cards2 ==============*/
+.main2{
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*============ Top Places Cards3 ==============*/
+.main3{
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*============ Top Places Cards4 ==============*/
+.container-rec2{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  
+  
+}
+
+.main4 {
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*============ Top Places Cards5 ==============*/
+.main5{
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*============ Top Places Cards6 ==============*/
+.main6{
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*============ footer ==============*/
+.last-footer {
+  background: black;
+  padding: 1rem;
+  margin-top: 2rem; /* Push the footer to the bottom */
+}
+
+.footer-con p {
+  color: white;
+  text-align: center;
+}
+/*============ pagination ============*/
+.pagination {
+  display: inline-block; 
+  display: flex;         /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically (if needed) */
+  height: 2rem;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #515151;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+
+/*============ Responsive ==============*/
+@media screen and (max-width:1409px){
+  .container-rec{
+    grid-template-columns: 1fr 1fr; /* 2 columns on medium screens */ 
+  }
+}
+
+
+@media screen and (max-width:512px){
+  /*============ Navigation Bar ==============*/
+  .nav-con{
+      padding: 1rem 0;
+      flex-direction: column;
+      height: 125px;
+  }
+  
+  .menu{
+      width: 100%;
+      text-align: center;
+      flex-direction: row;
+  }
+  
+  .menu li{
+      margin-left: 0;
+      transition: 0.5s;
+      margin: 0.5rem;
+      font-size: 1.2rem;
+  }
+
+  .menu li:hover {
+      background: #222;
+  }
+
+  .category-container{
+    max-width: 1140px;
+    margin: 0 auto;
+    background-color: black;
+    opacity: 100%;
+    border-radius: 20px;
+  }
+  
+  
+  .category-menu{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .category-menu li{
+    text-decoration: none;
+    list-style: none;
+    margin: 2rem;
+  }
+  
+  .category-menu li:hover{
+    background: rgb(118, 115, 115);
+    border-radius: 20px;
+  }
+
+  .container-rec{
+    grid-template-columns: 1fr; /* 1 columns on medium screens */ 
+  }
+
+  /*============ smaller cards for small screen ==============*/
+  .main {
+    width: 370px;
+    height: 400px ;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+}

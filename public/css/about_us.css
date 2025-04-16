@@ -1,0 +1,217 @@
+/*============ Navigation Bar ==============*/
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+nav{
+    background-color: black;
+    opacity: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.nav-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+.menu{
+    display: flex;
+}
+
+.menu li{
+    list-style: none;
+    margin: 2rem;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    position: relative;
+}
+
+.logo a{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    margin-left: 20px;
+}
+
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    background-image: linear-gradient(to right, #020024, #4fbfb3, #00d4ff);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 25px;
+    transition: width 0.4s;
+}
+
+/* Keep the hover effect and also apply it when a menu item is active */
+nav a:hover::after,
+nav a.active::after {
+    width: 60%;
+}
+
+.menu-toggle {
+    display: none; /* Hide the hamburger icon */
+}
+
+
+
+/*=============body==============*/
+h1{
+    margin-top: 2rem;
+}
+.abt_con {
+    text-align: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h2 {
+    color: black;
+}
+.team-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.team-member {
+    flex: 1 1 45%;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.about-con{
+    margin:2rem;
+}
+/*============ footer ==============*/
+.last-footer {
+    background: black;
+    padding: 1rem;
+    margin-top: 2rem; /* Push the footer to the bottom */
+  }
+  
+  .footer-con p {
+    color: white;
+    text-align: center;
+  }
+
+  /*============ Navigation Bar ==============*/
+ @media screen and (max-width:512px){
+    .nav-con{
+        padding: 1rem 0;
+        flex-direction: column;
+        height: 125px;
+    }
+    
+    .menu{
+        width: 100%;
+        text-align: center;
+        flex-direction: row;
+    }
+    
+    .menu li{
+        margin-left: 0;
+        transition: 0.5s;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu li:hover {
+        background: #222;
+    }
+
+}
+ @media screen and (max-width: 798px) {
+    .nav-con{
+        padding: 1rem 0;
+        flex-direction: column;
+        height: 125px;
+    }
+    
+    .menu{
+        text-align: center;
+        flex-direction: row;
+    }
+    
+    .menu li{
+        margin-left: 0;
+        transition: 0.5s;
+        margin: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .menu li:hover {
+        background: #222;
+    }
+
+    .menu-toggle {
+        display: none; /* Hide the hamburger icon */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-con {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8rem;
+    }
+
+    .menu li {
+        margin: 1rem 0;
+    }
+
+    .menu li a {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .menu-toggle {
+        display: contents;
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        margin-right: 20px;
+    }
+
+    .menu.active {
+        display: flex;
+        background-color: black;
+        
+    }
+}

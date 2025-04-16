@@ -1,0 +1,206 @@
+/*============ Navigation Bar ==============*/
+.container{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+nav{
+    background-color: black;
+    opacity: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.nav-con{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: auto;
+    
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+}
+
+.menu li{
+    list-style: none;
+    margin: 2rem;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.logo a{
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-image: linear-gradient(to right, #020024, #4fbfb3, #00d4ff);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  transition: width 0.4s;
+}
+
+nav a:hover::after,
+nav a.active::after { /* Keep highlight on active menu */
+  width: 60%;
+}
+
+
+.menu{
+    display: flex;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none; /* Hide the hamburger icon */
+}
+
+
+form{
+    display:flex;
+}
+
+.search-icon {
+    display: none;  /* Hide the search icon by default */
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+/* Styling for the submit button */
+.header-btn button[type="submit"] {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-btn button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+@media (max-width: 1431px) {
+    .nav-con {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        height: 14rem;
+    }
+
+
+    .category-container{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    
+}
+
+@media (max-width: 899px) {
+    .container-rec{
+        grid-template-columns: 1fr; /* 1 columns on medium screens */ 
+      }
+    
+    .category-menu{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {  
+    .logo a{
+        margin-left: 0;
+    }
+
+    .nav-con {
+        padding: 1rem;
+        align-items: center;
+        justify-content: center;
+        text-align: center;  
+        height: auto;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8rem;
+    }
+
+    .menu li {
+        margin: 0.25rem 0;
+    }
+
+    .menu li a {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .menu-toggle {
+        display: contents;
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        margin-right: 20px;
+    }
+
+    .menu.active {
+        display: flex;
+        background-color: black;
+        margin-top: 0;
+        width: auto;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .pagination{
+        display: flow;
+        height: 3rem;
+    }
+
+    
+  }
+
+
+

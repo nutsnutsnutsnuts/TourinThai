@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation-TourinThai</title>
+    <link rel="stylesheet" href="/public/css/recommendation.css">
+
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <header class="header" id="header">
+        <div class="container"></div>
+            <nav>
+                <div class="nav-con">
+                    <div class="logo">
+                        <a href="/">TourinThai</a>
+                    </div>
+                    <ul class="menu">
+                        <li><a href="/pages/1">Home</a></li>
+                        <li><a href="#Recommendation">Recommendation</a></li>
+                        <li><a href="/pages/3">Compare</a> </li>
+                        <li><a href="#About us">About us</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+    <!-- Slide Show -->
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="/public/images/วัดวังคำ-กาฬสินธุ์.jpg" alt="">
+            <div class="text">Wat Wang Kham - Kalasin</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/พระมหาธาตุแก่นนคร-ขอนแก่น.jpg" alt="">
+            <div class="text">Phra Mahathat Kaen Nakhon-Khon Kaen</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/มอหินขาว-ชัยภูมิ.jpg" alt="">
+            <div class="text">White Stone - Chaiyaphum</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/วัดพระธาตุพนม-นครพนม.jpg" alt="">
+            <div class="text">Wat Phra That Phanom - Nakhon Phanom</div>
+        </div>
+
+        <!-- Next/Previous button -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(+1)">&#10095;</a>
+    </div> 
+
+    <br>   
+    <!-- Dot/Click -->   
+    <div class="all_dots" style="text-align: center;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+    <!-- Must in container we USE!!! -->   
+    <script src="/public/js/recommendation.js"></script>
+
+    <div class="category-container">
+                <ul class="category-menu">
+                    <li><a href="#Sight Seeing">Sight Seeing</a></li>
+                    <li><a href="#Mountain">Mountain</a></li>
+                    <li><a href="#Temple">Temples</a> </li>
+                    <li><a href="#Restuarant">Restuarants</a></li>
+                    <li><a href="#Hotel">Hotels</a></li>
+                </ul>
+    </div>
+
+
+    <!--=================== Recommedation Cards ======================-->
+    <div class="container-rec">
+        <button class="main-button" onclick="window.location.href='/pages/4'">
+            <div class="main">
+                <div class="img">
+                    <img src="/public/images/น้ำตกถ้ำพระ บึงกาฬ.jpg" alt="">
+                </div>
+                <div class="content">
+                    <div class="center">
+                        <h3>Tham Phra Waterfall, Bueng Kan</h3>
+                        <h2>Sentiment Analysis: Positive</h2>
+                        <h2>Score: 0.89</h2>
+                        <p>Tham Phra Waterfall in Bueng Kan is a stunning three-tiered waterfall located in the Phu Wua Wildlife Sanctuary. 
+                            Surrounded by lush forest, it offers a peaceful escape with beautiful views and a natural water slide. 
+                            Visitors can also explore the nearby Phu Tham Phra Monastery, making it a serene spot for both relaxation and adventure
+                        ​</p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="ft-l">
+                        <p>Review from tourists: That's was a great adventure!</p>
+                    </div>
+                </div>
+            </div>
+        </button>
+        <div class="main2">
+            <div class="img">
+                <img src="/public/images/บ้านท่าแร่ สกลนคร.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h3>Ban Tha Rae, Sakon Nakhon</h3>
+                    <h2>Sentiment Analysis: Positive</h2>
+                    <h2>Score: 0.78</h2>
+                    <p>Ban Tha Rae, in Sakon Nakhon, is Thailand’s largest Christian community, 
+                        known for its colonial architecture and vibrant Christmas Star Festival, 
+                        where star lanterns light up the village in a unique celebration of Thai Christian heritage
+                        
+                    ​</p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Review from tourists: The village is so fantastic</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main3">
+            <div class="img">
+                <img src="/public/images/ภูห้วยอีสัน หนองคาย.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h3>Phu Huai Isan, Nong Khai</h3>
+                    <h2>Sentiment Analysis: Positive</h2>
+                    <h2>Score: 0.70</h2>
+                    <p>Phu Huai Isan in Nong Khai offers stunning sunrise views over a "sea of mist" that blankets the Mekong River, 
+                        best seen from October to January. This peaceful hilltop spot is perfect for nature enthusiasts and photographers 
+                        seeking dramatic morning landscapes
+                    ​</p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Review from tourists: Amazing!</p>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+
+
+
+    <div class="container-rec2">
+        <div class="main4">
+            <div class="img">
+                <img src="/public/images/น้ำตกถ้ำพระ บึงกาฬ.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h3>Tham Phra Waterfall, Bueng Kan</h3>
+                    <h2>Sentiment Analysis: Positive</h2>
+                    <h2>Score: 0.89</h2>
+                    <p>Tham Phra Waterfall in Bueng Kan is a stunning three-tiered waterfall located in the Phu Wua Wildlife Sanctuary. 
+                        Surrounded by lush forest, it offers a peaceful escape with beautiful views and a natural water slide. 
+                        Visitors can also explore the nearby Phu Tham Phra Monastery, making it a serene spot for both relaxation and adventure
+                    ​</p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Review from tourists: That's was a great adventure!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main5">
+            <div class="img">
+                <img src="/public/images/บ้านท่าแร่ สกลนคร.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h3>Ban Tha Rae, Sakon Nakhon</h3>
+                    <h2>Sentiment Analysis: Positive</h2>
+                    <h2>Score: 0.78</h2>
+                    <p>Ban Tha Rae, in Sakon Nakhon, is Thailand’s largest Christian community, 
+                        known for its colonial architecture and vibrant Christmas Star Festival, 
+                        where star lanterns light up the village in a unique celebration of Thai Christian heritage
+                        
+                    ​</p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Review from tourists: The village is so fantastic</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main6">
+            <div class="img">
+                <img src="/public/images/ภูห้วยอีสัน หนองคาย.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h3>Phu Huai Isan, Nong Khai</h3>
+                    <h2>Sentiment Analysis: Positive</h2>
+                    <h2>Score: 0.70</h2>
+                    <p>Phu Huai Isan in Nong Khai offers stunning sunrise views over a "sea of mist" that blankets the Mekong River, 
+                        best seen from October to January. This peaceful hilltop spot is perfect for nature enthusiasts and photographers 
+                        seeking dramatic morning landscapes
+                    ​</p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Review from tourists: Amazing!</p>
+                </div>
+            </div>         
+        </div>
+    </div>
+
+    <footer>
+        <div class="last-footer">
+            <div class="footer-con">
+                <p>Let TourinThai help you choose new experiences. @www.TourinThai.com</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

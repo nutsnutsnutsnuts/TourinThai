@@ -1,0 +1,492 @@
+/*============ Overall ==============*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*============ Navigation Bar ==============*/
+.container{
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+nav{
+  background-color: black;
+  opacity: 100%;
+}
+
+.nav-con{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  position: sticky;
+}
+
+.menu{
+  display: flex;
+}
+
+.menu li{
+  list-style: none;
+  margin: 2rem;
+}
+
+a{
+color: white;
+text-decoration: none;
+position: relative;
+}
+
+.logo a{
+display: contents;
+font-size: 2rem;
+text-align: center;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 5px;
+  background-image: linear-gradient(to right, #020024, #4fbfb3, #00d4ff);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  transition: width 0.4s;
+}
+
+nav a:hover::after,
+nav a.active::after { /* Keep highlight on active menu */
+  width: 60%;
+}
+
+/*============ Compare Description ==============*/
+.compare-des{
+  display: table;
+  width: 100%;
+  background:linear-gradient(black, grey);
+  color: white;
+  height: 18rem;
+  font-weight: 900;
+  font-size: 3rem;
+  padding-top: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.compare-des h2 {
+  text-align: center;
+}
+.compare-des p {
+  font-size: 17px;         /* Adjust font size */
+  line-height: 1.5;        /* Adjust line height for better readability */
+  color: white;             /* Set text color */
+  margin-top: 10px;        /* Add top margin */
+  margin-bottom: 10px;     /* Add bottom margin */
+  text-align: center;
+}
+
+/*============ Search to compare ==============*/
+.compare-container{
+  background: linear-gradient(grey, black);
+  height: 36rem;
+}
+
+/*grid*/
+.compare{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+/* VS circle and line */
+.vsseperator{
+  background-color: #fff;
+  border: 1px solid #bebebe;
+  border-radius: 15px;
+  color: #616161;
+  font-weight: 700;
+  height: 30px;
+  line-height: 29px;
+  position: relative;
+  text-align: center;
+  top: 70%;
+  width: 30px;
+  left: 50%;
+  top: -13rem;
+}
+
+.compare::before {
+  content: "";
+  position: absolute;
+  top: 25rem;
+  bottom: 0;
+  left: 50%; /* Center the line between columns */
+  width: 2px; /* Line thickness */
+  background-color: #ccc; /* Line color */
+  transform: translateX(-50%); /* Center the line precisely */
+  height: 27rem;
+}
+
+.search{
+  width: 280px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  border-radius: 28px;
+  background: #f6f6f6;
+}
+
+.search-input{
+  font-size: 16px;
+  color: #333333;
+  margin-left: 14px;
+  outline: none;
+  border: none;
+  background: transparent;
+  width: 200px;
+}
+
+.search-button{
+  border: none;
+  cursor: pointer;
+}
+
+/*============ Search to compare1 ==============*/
+.main7 {
+  width: 400px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+/*============ Search to compare2 ==============*/
+.main8 {
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 400px ;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 50px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  background-color: white;
+}
+
+.img{
+  height: 200px;
+  overflow: hidden;
+}
+
+.img img{
+  width: 100%;
+}
+
+.content{
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.content h3{
+  margin: 0.24rem 0;
+  font-size: 1rem;
+}
+
+.content h2{
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+}
+
+.center{
+  font-size: 0.7rem;
+}
+
+.content p {
+  margin-top: 0.25rem;
+  color: #9f9f9f;
+  overflow: hidden;
+  display: -webkit-box; /* Create a flexible box */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Arrange the items vertically */
+  text-overflow: ellipsis; /* Add '...' to indicate truncation */
+}
+
+.footer{
+  align-items: center;
+}
+
+.ft-l{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+/*Summarization*/
+.summarization-container{
+  background: black;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.comparison-title{
+  color: white;
+  text-align: center;
+}
+
+/*Compare Info*/
+/*============ Sentiment Analysis Description ==============*/
+.container{
+  max-width: 1140px; 
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section_area{
+  padding-top: 2rem;
+}
+
+.sen-title{
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.sen-score{
+  font-weight: 700;
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+
+.sen-des{
+  padding-top: 1rem;
+}
+
+.section_area_grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-gap: 50px;
+  
+}
+
+.sen-img img{
+  width: 100%;
+}
+
+/*============ Summarized sentiment graph ==============*/
+.more-review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text inside the more-review */
+  margin-bottom: 3rem;
+}
+
+.more-review {
+  margin-bottom: 20px; /* Space between the text and the image */
+  font-size: 50px; /* Adjust the font size as needed */
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.more-review-container img {
+  max-width: 100%;
+  width: 500px; /* Fixed width for the image */
+  height: 500px; /* Fixed height for the image */
+  object-fit: cover; /* Ensures the image covers the area properly without distortion */
+}
+
+
+/*============ footer ==============*/
+.last-footer {
+  background: black;
+  padding: 1rem;
+  margin-top:auto; /* Push the footer to the bottom */
+}
+
+.footer-con p {
+  color: white;
+  text-align: center;
+}
+
+
+
+#sentimentRadarChart {
+  margin-top: 3rem;
+  width: 550px;
+  height: 550px;
+
+}
+
+.suggestions-container {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  overflow-y: auto;   /* Scrollable if too many suggestions */
+  max-height: 150px;  /* Smaller height */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 10px; /* Rounded corners */
+  top: 50%;
+ 
+}
+
+.suggestions-container div {
+  padding: 10px 20px;  /* Reduced padding for a smaller box */
+  cursor: pointer;
+  font-size: 14px;     /* Smaller font size */
+}
+
+.suggestions-container div:hover {
+  background-color: #f0f0f0; /* Highlight suggestion on hover */
+}
+
+.suggestions-container div:active {
+  background-color: #e0e0e0; /* Active state for clicked suggestion */
+}
+
+.search-input {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  box-sizing: border-box; /* Padding does not affect width */
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 512px) {
+  .compare-des{
+    display: table;
+    background:linear-gradient(black, grey);
+    color: white;
+    height: 18rem;
+    font-weight: 900;
+    font-size: 1rem;
+    padding-top: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .main7 {
+    width: 330px;
+    height: 400px ;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: white;
+    margin-top: 2rem;
+  }
+
+  #sentimentRadarChart {
+    margin-top: 3rem;
+    width: 400px;
+    height: 400px;
+  
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .compare {
+      grid-template-columns: 1fr; /* Stack into one column */
+      padding-left: 2rem; /* Smaller padding */
+      padding-right: 2rem; /* Smaller padding */
+
+  }
+
+}
+
+@media screen and (max-width: 1434px){
+  .compare{
+    grid-template-columns: 1fr; /* Stack into one column */
+    padding-left: 2rem; /* Smaller padding */
+    padding-right: 2rem; /* Smaller padding */
+  }
+  
+  .last-footer{
+    margin-top: 40rem;
+  }
+
+  .compare::before {
+    display: none;
+  }
+
+
+
+  .search{
+    margin-bottom: 1.5rem;
+  }
+
+  .section_area_grid{
+    grid-template-columns: 1fr;
+    align-items: center;
+    text-align: center;
+  }
+}

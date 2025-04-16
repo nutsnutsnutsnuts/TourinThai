@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!--=================== CSS ======================-->
+    <link rel="stylesheet" href="/public/css/style.css">
+
+    <title>Home-TourinThai</title>
+    <!-- Link to JavaScript file -->
+    <script src="/public/js/main.js" defer></script>
+
+</head>
+<body>
+     <!--=================== HEADER ======================-->
+     <script src="/public/js/main.js"></script>
+     <header class="header" id="header">
+        <div class="container"></div>
+            
+        <nav>
+            <div class="nav-con">
+                <div class="logo">
+                    <a href="/">TourinThai</a>
+                    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+                </div>
+
+                <ul class="menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/recommendation">Recommendation</a></li>
+                    <li><a href="/compare">Compare</a> </li>
+                    <li><a href="/rate-us">Rate us</a></li>
+                    <li><a href="/about_us">About us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+            <div class="header-title">
+                <h1>"Discover the Charm of Northeastern Thailand"</h1>
+            </div>
+            <div class="header-info">
+                <p>
+                    Northeastern Thailand, known as Isan, is a captivating region filled with rich cultural heritage, 
+                    stunning landscapes, and warm hospitality. Famous for its ancient temples, vibrant festivals, 
+                    and unique culinary delights, Isan offers a blend of tradition and modernity. 
+                    From the picturesque Mekong River to the historic Phimai ruins, and from the lush national parks to the bustling local markets, 
+                    every corner of Isan tells a story waiting to be explored. Whether you're seeking adventure, relaxation, or cultural immersion, 
+                    Northeastern Thailand is the perfect destination to experience the heart and soul of Thailand.
+                </p>
+            </div>
+            <div class="header-btn">
+                <form action="/search" method="GET">
+                    <input type="text" id="keyword" name="keyword" placeholder="     Search for types of attraction...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+        </div>
+     </header>
+
+    <!--=================== Populars Places Description ======================-->
+    <section class="about">
+        <div class="container">
+            <div class="about-populars">
+                These are our popular attractions. 
+            </div>
+            <div class="about-popular-description">
+                "We've identified popular destinations using sentiment analysis, which analyzes the emotions of tourists who have visited these places before you. 
+                This means you can trust that the recommendations are based on real reviews, helping you confidently choose the best spots for your next adventure!"
+            </div>
+    </section>
+
+    <!--=================== Popular Places Cards ======================-->
+    <div class="container2">
+        <% Object.values(reviews).forEach(function(item){%>
+            <button class="main-button" onclick="window.location.href='/<%= item.reviewId %>'">
+                <div class="main">
+                    <div class="img">
+                        <img src="<%= item.Image1 %>" alt="Place Image" onerror="console.log('Error loading image:', this.src='/public/images/no_img.png')">
+                    </div>
+                    <div class="content">
+                        <div class="center">
+                            <h3><%= item.place %></h3>
+                            <h2>Sentiment analysis: <%= item.xgboost_predicted_sentiment_label %> </h2>
+                            <h2>Positive score: <%= item.Positive %> </h2>
+                            <p><%= item.cleaned_text %></p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="ft-l">
+                            <p>Province: <%= item.province%></p>
+                        </div>
+                    </div>
+                </div>   
+            </button>
+        <% }) %>   
+    </div>
+
+
+     <!--=================== Reviews ======================-->
+    <div class="container-rev"> 
+    <section class="reviews">
+        <div class="container3">
+            <div class="reviews-title">
+                <h3>Visitors who explored Northeast Thailand have shared their experiences…</h3>
+                <p>By analyzing visitor reviews, we gain insights into their experiences and emotions, enabling us to craft tailored recommendations to enhance your trip.</p>
+            </div>
+            <div class="reviews-grid">
+                <% Object.values(reviews).forEach(function(item){%>
+                <div class="reviews-box">
+                    <h3>"<%= item.place%>"</h3>
+                    <p><%= item.cleaned_text %></p>
+                    <div class="reviewer-img">
+                        <img src="/public/images/profile_mockup.png">
+                        <p><%= item.Username%></p>
+                    </div>
+                </div>
+                <% }) %>  
+            </div>  
+        </div>
+    </section>
+
+    <footer>
+        <div class="last-footer">
+            <div class="footer-con">
+                <p>&copy; 2024 TourinThai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

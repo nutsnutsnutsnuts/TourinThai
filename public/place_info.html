@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>infomation</title>
+    <link rel="stylesheet" href="/public/css/information.css">
+    <!-- Google Icon link -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward" />
+    <!-- Swiper.css link-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</head>
+<body>
+    <!-- Navigation Bar-->
+    <header class="header" id="header">
+        <div class="container"></div>
+            <nav>
+                <div class="nav-con">
+                    <div class="logo">
+                        <a href="/">TourinThai</a>
+                    </div>
+                    <ul class="menu">
+                        <li><a href="/pages/1">Home</a></li>
+                        <li><a href="/pages/2">Recommendation</a></li>
+                        <li><a href="/pages/3">Compare</a> </li>
+                        <li><a href="#About us">About us</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+    <!-- Slide Show -->
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="/public/images/น้ำตกถ้ำพระ-บึงกาฬ.jpg" alt="">
+            <div class="text">Tham Phra Waterfall, Bueng Kan</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/น้ำตกถ้ำพระ-บึงกาฬ2.jpg" alt="">
+            <div class="text">Tham Phra Waterfall, Bueng Kan</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/น้ำตกถ้ำพระ-บึงกาฬ3.jpg" alt="">
+            <div class="text">Tham Phra Waterfall, Bueng Kan</div>
+        </div>
+        <div class="mySlides fade">
+            <img src="/public/images/น้ำตกถ้ำพระ-บึงกาฬ4.jpg" alt="">
+            <div class="text">Tham Phra Waterfall, Bueng Kan</div>
+        </div>
+
+        <!-- Next/Previous button -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(+1)">&#10095;</a>
+    </div> 
+
+    <br>   
+    <!-- Dot/Click -->   
+    <div class="all_dots" style="text-align: center;">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+    </div>
+    <!-- Must in container we USE!!! -->   
+    <script src="/public/js/information.js"></script>
+
+     <!--=================== Populars Places Description ======================-->
+     <div class="info">
+        <div class="info-container">
+            <div class="about-info-description">
+                Nestled in the lush forest of Bueng Kan Province, Tham Phra Waterfall offers visitors a serene escape into nature. 
+                Known for its crystal-clear cascades and peaceful surroundings, this hidden gem is perfect for those seeking adventure and relaxation alike. 
+                Explore the enchanting paths through the forest, enjoy a refreshing dip in the pools, or simply unwind amidst the beauty of Thailand's northeast. 
+                Tham Phra Waterfall is a must-visit for anyone looking to experience the natural splendor and tranquility of Bueng Kan.
+            </div>
+        </div>
+    
+    <!-- Grid -->
+    <div class="section_area">
+        <div class="container">
+            <div class="section_area_grid">
+                <div class="section_area_grid_item">
+                    <div class="sen-title">
+                        "Tham Phra Waterfall" 
+                    </div>
+                    <div class="sen-des">
+                        located in the lush landscapes of Bueng Kan Province, is a serene and captivating destination that has received overwhelmingly positive feedback, 
+                        with a sentiment score of 44.88%. Visitors rave about the natural beauty and tranquility of this hidden gem, often describing it as a peaceful escape from bustling city life. 
+                        The crystal-clear waters, gentle cascades, and surrounding greenery offer a perfect spot for relaxation, photography, and immersion in nature. 
+                        Whether you're looking to explore the scenic trails or simply unwind by the water, Tham Phra Waterfall promises a memorable experience, as reflected by the glowing sentiment in visitor reviews.
+                    </div>
+                    <div class="sen-score">
+                        Score: 44.88% Positive
+                    </div>
+                </div>
+                <div class="sen-img">
+                    <img src="/public/images/sentiment-ex-graph.png" alt="">
+                </div>
+            </div>
+            
+            <div class="section-button">
+                <a class="nearby-hotel" href="#">
+                    <button class="nearest-hotel-btn">Nearby Accommodations</button>
+                </a>
+
+                OR
+
+                <a class="nearby-btn" href="#">
+                    <button class="nearest-place-btn">Nearby Attractions</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="more-review-container">
+        <div class="more-review">
+            Find more reveiws from ohter tourists!
+        </div>
+    </div>
+
+    <div class="card-contianer swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Positive.png" alt="">
+                    <div class="card-title">
+                        Nut Rattanamongkol
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Mixed.png" alt="">
+                    <div class="card-title">
+                        Gear
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Neutral.png" alt="">
+                    <div class="card-title">
+                        Unknown
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Negative.png" alt="">
+                    <div class="card-title">
+                        I am Susa
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Negative.png" alt="">
+                    <div class="card-title">
+                        Brandon
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+                <li class="card-item swiper-slide">
+                    <img class= "emotions-img" src="/public/images/Positive.png" alt="">
+                    <div class="card-title">
+                        Peter
+                    </div>
+                    <div class="card-review">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor atque praesentium quae iure neque culpa quo ipsam, blanditiis esse qui repellendus doloribus. Earum animi cumque, aliquam tenetur in expedita fugit?
+                    </div>
+                </li>
+            </ul>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+
+    <!-- Linking SwiperJS script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Linking Custom script-->
+    <script src="/public/js/swipe_info.js"></script>
+
+    
+    <footer>
+        <div class="last-footer">
+            <div class="footer-con">
+                <p>Let TourinThai help you choose new experiences. @www.TourinThai.com</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

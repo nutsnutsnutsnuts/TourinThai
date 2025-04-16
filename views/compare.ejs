@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Attractions</title>
+    <link rel="stylesheet" href="/public/css/compare.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/public/js/main.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <%- include('navbar.ejs') %>
+        <div class="compare-des">
+            <h2>"Compare Attractions"</h2>
+            <p>Compare Attractions helps you explore and analyze two tourist spots by comparing their location, visitor reviews, sentiment scores (Positive, Neutral, Negative), and key highlights. Easily identify differences to make informed travel decisions.</p>
+        </div>
+    </header>
+
+    <div class="compare-container">
+
+        <!-- Search Boxes -->
+        <form action="/search_compare" method="GET" class="compare">
+            <div class="search">
+                <input class="search-input" type="text" name="search1" id="search1" placeholder="Search first place" required autocomplete="off">
+                <div id="suggestions1" class="suggestions-container"></div>
+                <button class="search-button" type="submit">Search</button>
+            </div>
+        
+            <div class="search">
+                <input class="search-input" type="text" name="search2" id="search2" placeholder="Search second place" required autocomplete="off">
+                <div id="suggestions2" class="suggestions-container"></div>
+                <button class="search-button" type="submit">Search</button>
+            </div>
+        </form>
+        
+        <script>
+            function getSuggestions(inputId, suggestionsContainerId) {
+                const query = document.getElementById(inputId).value;
+                if (query.length > 2) { // Trigger after 3 characters
+                    fetch(`/search-suggestions?query=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let suggestions = data.suggestions;
+                            let suggestionsContainer = document.getElementById(suggestionsContainerId);
+                            suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+                            suggestions.forEach(item => {
+                                const suggestionElement = document.createElement('div');
+                                suggestionElement.textContent = item;
+                                suggestionElement.onclick = function() {
+                                    document.getElementById(inputId).value = item;
+                                    suggestionsContainer.innerHTML = ''; // Clear suggestions after selection
+                                };
+                                suggestionsContainer.appendChild(suggestionElement);
+                            });
+                        });
+                }
+            }
+        
+            // Add event listeners for the input fields
+            document.getElementById('search1').addEventListener('keyup', function() {
+                getSuggestions('search1', 'suggestions1');
+            });
+        
+            document.getElementById('search2').addEventListener('keyup', function() {
+                getSuggestions('search2', 'suggestions2');
+            });
+        </script>
+        
+
+        <% if (place1 && place2) { %>
+
+        <div class="comparison-section compare">
+            <!-- First Place -->
+            <div class="main7">
+                <div class="img">
+                    <img src="<%= place1.Image1 %>" alt="<%= place1.place %>">
+                </div>
+                <div class="content">
+                    <div class="center">
+                        <h2><%= place1.place %></h2>
+                        <p><%= place1.cleaned_text %></p>
+                        <p><strong>Sentiment:</strong> <%= place1.xgboost_predicted_sentiment_label %></p>
+                        <p><strong>Positive Score:</strong> <%= place1.Positive.toFixed(2) %>%</p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="ft-l">
+                        <p>Province: <%= place1.province%></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VS Separator -->
+           
+
+            <!-- Second Place -->
+            <div class="main7">
+                <div class="img">
+                    <img src="<%= place2.Image1 %>" alt="<%= place2.place %>">
+                </div>
+                <div class="content">
+                    <div class="center">
+                        <h2><%= place2.place %></h2>
+                        <p><%= place2.cleaned_text %></p>
+                        <p><strong>Sentiment:</strong> <%= place2.xgboost_predicted_sentiment_label %></p>
+                        <p><strong>Positive Score:</strong> <%= place2.Positive.toFixed(2) %>%</p>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="ft-l">
+                        <p>Province: <%= place2.province%></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Summarization -->    
+    <div class="summarization-container">
+        <div class="comparison-title">
+            <p>Comparison Information</p>
+            <h2><%= place1.place %> VS <%= place2.place %></h2>
+        </div>  
+    </div> 
+
+    <div class="section_area">
+        <div class="container">
+            <div class="section_area_grid">
+                <div class="section_area_grid_item">
+                    <div class="sen-title">
+                        "<%= place1.place %>" 
+                    </div>
+                    <div class="sen-des">
+                        <%= place1.cleaned_text %>
+                    </div>
+                    <div class="sen-score">Positive:<%= place1.Positive %></div>
+                    <div class="sen-score">Neutral:<%= place1.Neutral %></div>
+                    <div class="sen-score">Negative:<%= place1.Negative %></div>
+                    <div class="sen-score">Overall comments: <%= place1.xgboost_predicted_sentiment_label %></div>
+            
+                </div>
+                <div class="section_area_grid_item">
+                    <div class="sen-title">
+                        "<%= place2.place %>" 
+                    </div>
+                    <div class="sen-des">
+                        <%= place2.cleaned_text %>
+                    </div>
+                    <div class="sen-score">Positive:<%= place2.Positive %></div>
+                    <div class="sen-score">Neutral:<%= place2.Neutral %></div>
+                    <div class="sen-score">Negative:<%= place2.Negative %></div>
+                    <div class="sen-score">Overall comments: <%= place2.xgboost_predicted_sentiment_label %></div>
+                </div>
+            </div>  
+    </div>
+        <!-- Radar Chart for Sentiment Comparison -->
+        <div class="more-review-container">
+            <div class="more-review">Sentiment Comparison</div>
+            <canvas id="sentimentRadarChart"></canvas>
+        </div>
+
+        <script>
+            const ctx = document.getElementById('sentimentRadarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Positive', 'Neutral', 'Negative'],
+                    datasets: [
+                        {
+                            label: '<%= place1.place %>',
+                            data: [<%= place1.Positive %>, <%= place1.Neutral %>, <%= place1.Negative %>],
+                            borderColor: 'blue',
+                            backgroundColor: 'rgba(0, 0, 255, 0.3)',
+                        },
+                        {
+                            label: '<%= place2.place %>',
+                            data: [<%= place2.Positive %>, <%= place2.Neutral %>, <%= place2.Negative %>],
+                            borderColor: 'red',
+                            backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                        }
+                    ]
+                },
+                options: {
+                    responsive:false,
+                
+                }
+            });
+        </script>
+
+        <% } else { %>
+        <!-- Mock-up Block Instead of Message -->
+        <div class="comparison-section compare">
+        <div class="main7">
+            <div class="img">
+                <img src="/public/images/no_img.png" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h2>Attraction 1</h2>
+                    <p>Review</p>
+                    <p><strong>Sentiment:</strong> </p>
+                    <p><strong>Positive Score:</strong> </p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Province:</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main7">
+            <div class="img">
+                <img src="/public/images/no_img.png" alt="">
+            </div>
+            <div class="content">
+                <div class="center">
+                    <h2>Attraction 2</h2>
+                    <p>Review</p>
+                    <p><strong>Sentiment:</strong> </p>
+                    <p><strong>Positive Score:</strong> </p>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="ft-l">
+                    <p>Province:</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <% } %>
+    </div>
+
+    <!-- Footer -->
+    <footer class="last-footer">
+        <div class="footer-con">
+            <p>&copy; 2025 TourinThai. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

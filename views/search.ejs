@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search-result</title>
+    <link rel="stylesheet" href="/public/css/search.css">
+</head>
+<body>
+    <body>
+    <!-- Navigation Bar-->
+    <header class="header" id="header">
+        <div class="container"></div>
+        
+        <%- include('navbar.ejs') %>
+    
+
+    <div class="search-results" >
+        <h1>Results for "<%= keyword %>"</h1>
+    </div>
+    <section>
+        <div class="container-rec">
+            <% if (results && results.length > 0) { %>
+                <% results.forEach(function(item) { %>
+                    <button class="main-button" onclick="window.location.href='/<%= item.reviewId%>'">
+                        <div class="main">
+                            <div class="img">
+                                <img src="<%= item.Image1 %>" alt="Place Image" onerror="console.log('Error loading image:', this.src='/public/images/no_img.png')">
+                            </div>
+                            <div class="content">
+                                <div class="center">
+                                    <h3><%= item.place %></h3>
+                                    <h2>Sentiment Analysis: <%= item.xgboost_predicted_sentiment_label %></h2>
+                                    <h2>Positive score: <%= item.Positive %></h2>
+                                    <p><%= item.cleaned_text%></p>
+                                </div>
+                            </div>
+                            <div class="footer">
+                                <div class="ft-l">
+                                    <p>Province: <%= item.province %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                <% }); %>
+            <% } else { %>
+                <p>No results found for "<%= keyword %>".</p>
+            <% } %>
+        </div>
+    </section>
+    
+    <!-- Pagination -->
+    <div class="pagination">
+        <!-- Previous Page Link -->
+        <% if (currentPage > 1) { %>
+            <a href="/search?keyword=<%= keyword %>&page=<%= currentPage - 1 %>">&laquo; Prev</a>
+        <% } %>
+    
+        <!-- Page Numbers -->
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="/search?keyword=<%= keyword %>&page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>">
+                <%= i %>
+            </a>
+        <% } %>
+    
+        <!-- Next Page Link -->
+        <% if (currentPage < totalPages) { %>
+            <a href="/search?keyword=<%= keyword %>&page=<%= currentPage + 1 %>">Next &raquo;</a>
+        <% } %>
+    </div>
+    
+
+    <footer>
+        <div class="last-footer">
+            <div class="footer-con">
+                <p>&copy; 2024 TourinThai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+
+</body>
+</html>
