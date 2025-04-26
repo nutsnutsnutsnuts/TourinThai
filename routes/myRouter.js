@@ -104,7 +104,7 @@ router.get('/recommendation', async (req, res) => {
         const limit = 30; // Items per page
         const skip = (page - 1) * limit;
 
-        // Define the list of keywords you want to search for
+        // Define the list of keywords to search for
         const keywords = ['Dam', 'park', 'garden', 'waterfall', 'wat', 'cafe', 'hotel'];
         let keywordCounts = {};
 
@@ -319,7 +319,7 @@ router.get('/search_compare', async (req, res) => {
                         $or: [
                             { place: { $regex: keyword, $options: 'i' } },
                             { province: { $regex: keyword, $options: 'i' } },
-                            { cleaned_text: { $regex: keyword, $options: 'i' } }
+                            { Description: { $regex: keyword, $options: 'i' } }
                         ]
                     }
                 },
@@ -337,6 +337,7 @@ router.get('/search_compare', async (req, res) => {
                         _id: "$place",
                         place: { $first: "$place" },
                         province: { $first: "$province" },
+                        Description: { $first: "$Description" },
                         Image1: { $first: "$Image1" },
                         xgboost_predicted_sentiment_label: { $first: "$reviewData.xgboost_predicted_sentiment_label" },
                         Positive: { $first: "$reviewData.Positive" },

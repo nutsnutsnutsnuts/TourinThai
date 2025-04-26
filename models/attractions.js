@@ -30,6 +30,7 @@ let reviewSchema = mongoose.Schema({
 
 // Merged_places Schema
 const mergedPlacesSchema = mongoose.Schema({
+    Description: String,
     Image1: String,
     Image2: String,
     Image3: String,

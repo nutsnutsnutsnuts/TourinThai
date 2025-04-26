@@ -91,7 +91,7 @@
                         <%= attraction.province %>"
                     </div>
                     <div class="sen-des">
-                        <%= attraction.cleaned_text%>
+                        <%= mergedPlace.Description %>
                     </div>
                     <div class="sen-score">
                         Overall comments: <%= attraction.xgboost_predicted_sentiment_label %>
@@ -114,7 +114,7 @@
                 <canvas id="sentimentChart"></canvas>
                 <script>
                     window.onload = function() {
-                    // Data for the chart (from your review object)
+                    // Data for the chart 
                     const sentimentData = {
                     labels: ['Negative', 'Neutral', 'Positive'],
                             datasets: [{
@@ -195,7 +195,7 @@
             <ul class="card-list swiper-wrapper">
                 <% mergedPlace.user_reviews.slice(0, 50).forEach(function(review) { %>
                     <li class="card-item swiper-slide">
-                        <!-- Assuming you want to display a sentiment image based on some field in the review -->
+                        <!-- To display a sentiment image based on some fields in the review -->
                         <div class="card-title"><%= review.Username || 'Anonymous' %></div>
                         <div class="card-review">Comment: <%= review.xgboost_predicted_sentiment_label || 'Neutral' %></div>
                         <div class="card-review"><%= review.Review || 'No review text available' %></div>
