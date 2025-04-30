@@ -33,12 +33,37 @@ a{
     position: relative;
 }
 
+.logo img {
+    height: 50px;  
+    width: auto;   /* Keeps aspect ratio */
+}
+
 .logo a{
     font-size: 2rem;
     margin-bottom: 1.5rem;
     margin-left: 20px;
 }
 
+
+/* Flex container for logo + menu-toggle */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo image styling */
+.logo-group img {
+    height: 50px;
+    width: auto;
+}
+
+/* Menu toggle icon */
+.menu-toggle {
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    display: block; /* or use media queries to show only on mobile */
+}
 
 nav a::after {
     content: "";

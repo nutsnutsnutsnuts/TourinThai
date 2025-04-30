@@ -321,13 +321,14 @@ nav a.active::after { /* Keep highlight on active menu */
 }
 
 .sen-score{
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   padding-top: 1rem;
 }
 
 .sen-des{
+  font-size: 1rem;
   padding-top: 1rem;
+  font-weight: bold;
 }
 
 .section_area_grid{
@@ -340,6 +341,31 @@ nav a.active::after { /* Keep highlight on active menu */
 .sen-img img{
   width: 100%;
 }
+
+.go-on {
+  margin-top: 1rem;
+  background-color: #007BFF; /* Bootstrap-like blue */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+.go-on:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.go-on:active {
+  background-color: #00408a;
+  transform: scale(0.97);
+}
+
 
 /*============ Summarized sentiment graph ==============*/
 .more-review-container {
@@ -381,8 +407,8 @@ nav a.active::after { /* Keep highlight on active menu */
 
 #sentimentRadarChart {
   margin-top: 3rem;
-  width: 550px;
-  height: 550px;
+  width: 700px;
+  height: 700px;
 
 }
 
@@ -394,8 +420,7 @@ nav a.active::after { /* Keep highlight on active menu */
   max-height: 150px;  /* Smaller height */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   border-radius: 10px; /* Rounded corners */
-  top: 50%;
- 
+  top: 45%;
 }
 
 .suggestions-container div {
@@ -460,6 +485,12 @@ nav a.active::after { /* Keep highlight on active menu */
       padding-right: 2rem; /* Smaller padding */
 
   }
+  #sentimentRadarChart {
+    margin-top: 3rem;
+    width: 400px;
+    height: 400px;
+  
+  }
 
 }
 
@@ -488,5 +519,12 @@ nav a.active::after { /* Keep highlight on active menu */
     grid-template-columns: 1fr;
     align-items: center;
     text-align: center;
+  }
+
+  #sentimentRadarChart {
+    margin-top: 3rem;
+    width: 400px;
+    height: 400px;
+  
   }
 }

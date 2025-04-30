@@ -101,11 +101,11 @@
                             <button class="nearest-map-btn">Map</button>
                         </a>
                     
-                        <a class="nearby-hotel" href="https://www.google.com/maps/search/accommodations+near+<%= mergedPlace.latitude %>,<%= mergedPlace.longitude %>" target="_blank">
+                        <a class="nearby-hotel" href="https://www.tripadvisor.com/Search?q=hotel+nearby+<%= encodeURIComponent(mergedPlace.place + ' ' + mergedPlace.province) %>" target="_blank">
                             <button class="nearest-hotel-btn">Nearby Accommodations</button>
                         </a>
                         
-                        <a class="nearby-btn" href="https://www.google.com/maps/search/attraction+near+<%= mergedPlace.latitude %>,<%= mergedPlace.longitude %>" target="_blank">
+                        <a class="nearby-hotel" href="https://www.tripadvisor.com/Search?q=attractions+nearby+<%= encodeURIComponent(mergedPlace.place + ' ' + mergedPlace.province) %>" target="_blank">
                             <button class="nearest-place-btn">Nearby Attractions</button>
                         </a>
                     </div>

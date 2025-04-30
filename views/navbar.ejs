@@ -3,27 +3,64 @@
 <script src="/public/js/main.js"></script>
 <nav>
     <div class="nav-con">
-        <div class="logo">
-            <a href="/">TourinThai</a>
-            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <div class="nav-con">
+            <!-- Logo + Toggle Group -->
+            <div class="logo-group">
+              <a href="/">
+                <img src="/public/images/logo.png" alt="TourinThai Logo">
+              </a>
+              <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            </div>
+        
+            <!-- Navigation Menu -->
+            <ul class="menu">
+              <li><a href="/">Home</a></li>
+              <li><a href="/recommendation">Recommendation</a></li>
+              <li><a href="/compare">Compare</a></li>
+              <li><a href="/rate-us">Rate us</a></li>
+              <li><a href="/about_us">About us</a></li>
+            </ul>
         </div>
-
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/recommendation">Recommendation</a></li>
-            <li><a href="/compare">Compare</a> </li>
-            <li><a href="/rate-us">Rate us</a></li>
-            <li><a href="/about_us">About us</a></li>
-        </ul>
 
         <div class="header-btn">
             <form action="/search" method="GET" class="search-form">
-                <input type="text" id="keyword" name="keyword" placeholder="Search for types of attraction..." class="search-input">
+                <input type="text" id="keyword" name="keyword" placeholder="Search for types of attraction..." class="search-input" autocomplete="off" required>
+                <div id="suggestions" class="suggestions-container"></div>
                 <button type="submit" class="search-btn">
-                    <i class="fas fa-search"></i>  <!-- FontAwesome Magnifying Glass Icon -->
+                    <i class="fas fa-search"></i>
                 </button>
             </form>
         </div>
+        
+        <script>
+            function getSuggestions(inputId, suggestionsContainerId) {
+                const query = document.getElementById(inputId).value;
+                if (query.length > 2) {
+                    fetch(`/search-suggestions?query=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let suggestionsContainer = document.getElementById(suggestionsContainerId);
+                            suggestionsContainer.innerHTML = '';
+                            data.suggestions.forEach(item => {
+                                const div = document.createElement('div');
+                                div.textContent = item;
+                                div.onclick = function () {
+                                    document.getElementById(inputId).value = item;
+                                    suggestionsContainer.innerHTML = '';
+                                };
+                                suggestionsContainer.appendChild(div);
+                            });
+                        });
+                } else {
+                    document.getElementById(suggestionsContainerId).innerHTML = '';
+                }
+            }
+        
+            document.getElementById('keyword').addEventListener('keyup', function () {
+                getSuggestions('keyword', 'suggestions');
+            });
+        </script>
+        
         
     </div>
 </nav>

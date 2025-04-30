@@ -41,12 +41,36 @@ a{
     position: relative;
 }
 
+.logo img {
+    height: 50px;  
+    width: auto;   /* Keeps aspect ratio */
+}
+
 .logo a{
     font-size: 2rem;
     margin-bottom: 1.5rem;
     margin-left: 20px;
 }
 
+/* Flex container for logo + menu-toggle */
+.logo-group {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo image styling */
+.logo-group img {
+    height: 50px;
+    width: auto;
+}
+
+/* Menu toggle icon */
+.menu-toggle {
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    display: block; /* or use media queries to show only on mobile */
+}
 
 nav a::after {
     content: "";
@@ -137,6 +161,33 @@ header{
 .header-btn button[type="submit"]:hover {
     background-color: #0056b3; /* Darker shade on hover */
 }
+
+.suggestions-container {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    overflow-y: auto;   /* Scrollable if too many suggestions */
+    max-height: 150px;  /* Smaller height */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px; /* Rounded corners */
+   
+  }
+.suggestions-container div {
+  padding: 10px 20px;  /* Reduced padding for a smaller box */
+  cursor: pointer;
+  font-size: 14px;     /* Smaller font size */
+  color: #020024;
+
+}
+
+.suggestions-container div:hover {
+  background-color: #f0f0f0; /* Highlight suggestion on hover */
+}
+
+.suggestions-container div:active {
+  background-color: #e0e0e0; /* Active state for clicked suggestion */
+}
+
 
 
 /*============ Popular Places Description ==============*/

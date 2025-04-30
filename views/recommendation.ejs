@@ -51,6 +51,47 @@
     <script src="/public/js/recommendation.js"></script>
     </header>
 
+    <div class="recommend">
+        <div class="top-title"><h2>"Top 3 Places by Category"</h2></div>
+        <section>
+            <% Object.entries(topPlaces).forEach(([category, places]) => { %>
+              <div class="category"><h3><%= category %></h3></div>
+              <div class="container-rec">
+                <% places.forEach((item, index) => { %>
+                  <button class="main-button" onclick="window.location.href='/<%= item.reviewId %>'">
+                    <div class="main">
+                      <div class="ranking-badge"><%= index + 1 %></div> <!-- Rank overlay -->
+                      <div class="img">
+                        <img src="<%= item.Image1 %>" alt="Place Image"
+                          onerror="console.log('Error loading image:', this.src='/public/images/no_img.png')">
+                      </div>
+                      <div class="content">
+                        <div class="center">
+                          <h3><%= item.place %></h3>
+                          <h2>Sentiment Analysis: <%= item.xgboost_predicted_sentiment_label %></h2>
+                          <h2>Positive score: <%= item.Positive %></h2>
+                          <p><%= item.cleaned_text %></p>
+                        </div>
+                      </div>
+                      <div class="footer">
+                        <div class="ft-l">
+                          <p>Province: <%= item.province %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                <% }) %>
+              </div>
+            <% }) %>
+          </section>
+          
+           
+    </div>
+
+    <div class="other-attractions">
+        <h3>Other Attractions</h3>
+    </div>
+
     <div class="category-container">
         <ul class="category-menu">
             <li><a href="/search?keyword=hotel">Hotels (<%= keywordCounts['hotel'] %>)</a></li>

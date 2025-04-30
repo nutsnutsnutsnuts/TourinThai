@@ -21,20 +21,25 @@
             
         <nav>
             <div class="nav-con">
-                <div class="logo">
-                    <a href="/">TourinThai</a>
-                    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
-                </div>
-
-                <ul class="menu">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/recommendation">Recommendation</a></li>
-                    <li><a href="/compare">Compare</a> </li>
-                    <li><a href="/rate-us">Rate us</a></li>
-                    <li><a href="/about_us">About us</a></li>
-                </ul>
+              <!-- Logo + Toggle Group -->
+              <div class="logo-group">
+                <a href="/">
+                  <img src="/public/images/logo.png" alt="TourinThai Logo">
+                </a>
+                <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+              </div>
+          
+              <!-- Navigation Menu -->
+              <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommendation">Recommendation</a></li>
+                <li><a href="/compare">Compare</a></li>
+                <li><a href="/rate-us">Rate us</a></li>
+                <li><a href="/about_us">About us</a></li>
+              </ul>
             </div>
         </nav>
+          
 
             <div class="header-title">
                 <h1>"Discover the Charm of Northeastern Thailand"</h1>
@@ -51,10 +56,61 @@
             </div>
             <div class="header-btn">
                 <form action="/search" method="GET">
-                    <input type="text" id="keyword" name="keyword" placeholder="     Search for types of attraction...">
+                    <input type="text" id="keyword" name="keyword" placeholder="Search for types of attraction..." required autocomplete="off">
+                    <div id="suggestions" class="suggestions-container"></div>
                     <button type="submit">Search</button>
                 </form>
             </div>
+            
+            <script>
+                function getSuggestions(inputId, suggestionsContainerId) {
+                    const query = document.getElementById(inputId).value.trim();
+                    const suggestionsContainer = document.getElementById(suggestionsContainerId);
+            
+                    if (query.length > 2) {
+                        fetch(`/search-suggestions?query=${query}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+            
+                                if (data.suggestions && data.suggestions.length > 0) {
+                                    data.suggestions.forEach(item => {
+                                        const suggestionElement = document.createElement('div');
+                                        suggestionElement.textContent = item;
+                                        suggestionElement.onclick = function () {
+                                            document.getElementById(inputId).value = item;
+                                            suggestionsContainer.innerHTML = '';
+                                            suggestionsContainer.style.display = 'none';
+                                        };
+                                        suggestionsContainer.appendChild(suggestionElement);
+                                    });
+                                    suggestionsContainer.style.display = 'block';
+                                } else {
+                                    suggestionsContainer.style.display = 'none';
+                                }
+                            });
+                    } else {
+                        suggestionsContainer.innerHTML = '';
+                        suggestionsContainer.style.display = 'none';
+                    }
+                }
+            
+                // Attach input event listener
+                document.getElementById('keyword').addEventListener('keyup', function () {
+                    getSuggestions('keyword', 'suggestions');
+                });
+            
+                // Hide suggestions on click outside
+                document.addEventListener('click', function (event) {
+                    const input = document.getElementById('keyword');
+                    const container = document.getElementById('suggestions');
+                    if (!input.contains(event.target) && !container.contains(event.target)) {
+                        container.style.display = 'none';
+                    }
+                });
+            </script>
+            
+            
 
         </div>
      </header>

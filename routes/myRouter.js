@@ -99,33 +99,84 @@ router.get('/', async (req, res) => {
 
 router.get('/recommendation', async (req, res) => {
     try {
-        // Pagination setup
-        const page = parseInt(req.query.page) || 1; // Get the current page from query, default to 1
-        const limit = 30; // Items per page
+        // Pagination setup for all places
+        const page = parseInt(req.query.page) || 1;
+        const limit = 30;
         const skip = (page - 1) * limit;
 
-        // Define the list of keywords to search for
-        const keywords = ['Dam', 'park', 'garden', 'waterfall', 'wat', 'cafe', 'hotel'];
-        let keywordCounts = {};
+        // Categories for top 3 places
+        const categories = {
+            Temples: ['temple'],
+            Waterfalls: ['waterfall'],
+            Cafés: ['cafe'],
+            Hotels: ['hotel']
+        };
 
-        // Count places for each keyword
-        for (let kw of keywords) {
-            const count = await MergedPlace.countDocuments({
-                place: { $regex: kw, $options: 'i' } // Case-insensitive match for places
-            });
-            keywordCounts[kw] = count; // Store the count for each keyword
+        const topPlaces = {};
+
+        // Top 3 for each category
+        for (const [category, keywords] of Object.entries(categories)) {
+            const results = await Review.aggregate([
+                {
+                    $match: {
+                        place: { $regex: keywords.join('|'), $options: 'i' }
+                    }
+                },
+                {
+                    $group: {
+                        _id: "$place",
+                        reviewId: { $first: "$_id" },
+                        Username: { $first: "$Username" },
+                        Rating: { $first: "$Rating" },
+                        Review: { $first: "$Review" },
+                        province: { $first: "$province" },
+                        place: { $first: "$place" },
+                        cleaned_text: { $first: "$cleaned_text" },
+                        xgboost_predicted_sentiment: { $first: "$xgboost_predicted_sentiment" },
+                        xgboost_predicted_sentiment_label: { $first: "$xgboost_predicted_sentiment_label" },
+                        Negative: { $first: "$Negative" },
+                        Neutral: { $first: "$Neutral" },
+                        Positive: { $first: "$Positive" }
+                    }
+                },
+                { $sort: { Positive: -1 } },
+                { $limit: 3 },
+                {
+                    $lookup: {
+                        from: 'Merged_places',
+                        localField: 'place',
+                        foreignField: 'place',
+                        as: 'mergedPlace'
+                    }
+                },
+                {
+                    $addFields: {
+                        Image1: { $arrayElemAt: ["$mergedPlace.Image1", 0] }
+                    }
+                },
+                { $project: { mergedPlace: 0 } }
+            ]);
+            topPlaces[category] = results;
         }
 
-        // Get the total count of unique places
+        // Get keyword counts (optional analytics)
+        const keywords = ['Dam', 'park', 'garden', 'waterfall', 'wat', 'cafe', 'hotel'];
+        let keywordCounts = {};
+        for (let kw of keywords) {
+            const count = await MergedPlace.countDocuments({
+                place: { $regex: kw, $options: 'i' }
+            });
+            keywordCounts[kw] = count;
+        }
+
+        // Paginated all unique places
         const totalReviews = await Review.aggregate([
             { $group: { _id: "$place" } },
             { $count: "total" }
         ]);
-
         const totalItems = totalReviews[0]?.total || 0;
         const totalPages = Math.ceil(totalItems / limit);
 
-        // Fetch paginated unique places
         const reviews = await Review.aggregate([
             {
                 $group: {
@@ -144,9 +195,9 @@ router.get('/recommendation', async (req, res) => {
                     Positive: { $first: "$Positive" }
                 }
             },
-            { $sort: { _id: 1 } }, // Ensure consistent ordering
-            { $skip: skip },       // Skip items for pagination
-            { $limit: limit },     // Limit items per page
+            { $sort: { _id: 1 } },
+            { $skip: skip },
+            { $limit: limit },
             {
                 $lookup: {
                     from: 'Merged_places',
@@ -163,19 +214,21 @@ router.get('/recommendation', async (req, res) => {
             { $project: { mergedPlace: 0 } }
         ]);
 
-        // Render the recommendation template with reviews, pagination data, and keyword counts
+        // Render both sections in the same EJS page
         res.render('recommendation.ejs', {
-            reviews,
+            topPlaces,        // Top 3 per category
+            reviews,          // Paginated places
             currentPage: page,
             totalPages,
-            keywordCounts // Pass the keywordCounts to the EJS template
+            keywordCounts
         });
 
     } catch (err) {
-        console.error('Error fetching reviews:', err);
+        console.error('Error fetching combined recommendation data:', err);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 
 router.get('/rate-us',(req,res)=>{
@@ -227,7 +280,7 @@ router.get('/search', async (req, res) => {
                 $or: [
                     { place: { $regex: keyword, $options: 'i' } }, // Case-insensitive partial match for place
                     { province: { $regex: keyword, $options: 'i' } }, // Case-insensitive partial match for province
-                    { cleaned_text: { $regex: keyword, $options: 'i' } }
+                    { Description: { $regex: keyword, $options: 'i' } }
                 ]
             };
         } else {
@@ -236,7 +289,7 @@ router.get('/search', async (req, res) => {
                 $or: [
                     { place: keyword }, // Exact match for place
                     { province: keyword }, // Exact match for province
-                    { cleaned_text: keyword } 
+                    { Description: keyword } 
                 ]
             };
         }
@@ -401,7 +454,6 @@ router.get('/search-suggestions', async (req, res) => {
 router.get('/about_us',(req,res)=>{
     res.render('about_us.ejs')
 })
-
 
 
 

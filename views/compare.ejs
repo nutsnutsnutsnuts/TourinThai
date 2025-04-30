@@ -40,36 +40,69 @@
         
         <script>
             function getSuggestions(inputId, suggestionsContainerId) {
-                const query = document.getElementById(inputId).value;
-                if (query.length > 2) { // Trigger after 3 characters
+                const query = document.getElementById(inputId).value.trim();
+                const suggestionsContainer = document.getElementById(suggestionsContainerId);
+        
+                if (query.length > 2) {
                     fetch(`/search-suggestions?query=${query}`)
                         .then(response => response.json())
                         .then(data => {
-                            let suggestions = data.suggestions;
-                            let suggestionsContainer = document.getElementById(suggestionsContainerId);
                             suggestionsContainer.innerHTML = ''; // Clear previous suggestions
-                            suggestions.forEach(item => {
-                                const suggestionElement = document.createElement('div');
-                                suggestionElement.textContent = item;
-                                suggestionElement.onclick = function() {
-                                    document.getElementById(inputId).value = item;
-                                    suggestionsContainer.innerHTML = ''; // Clear suggestions after selection
-                                };
-                                suggestionsContainer.appendChild(suggestionElement);
-                            });
+        
+                            if (data.suggestions && data.suggestions.length > 0) {
+                                data.suggestions.forEach(item => {
+                                    const suggestionElement = document.createElement('div');
+                                    suggestionElement.textContent = item;
+                                    suggestionElement.onclick = function () {
+                                        document.getElementById(inputId).value = item;
+                                        suggestionsContainer.innerHTML = '';
+                                        suggestionsContainer.style.display = 'none';
+                                    };
+                                    suggestionsContainer.appendChild(suggestionElement);
+                                });
+                                suggestionsContainer.style.display = 'block';
+                            } else {
+                                suggestionsContainer.style.display = 'none';
+                            }
                         });
+                } else {
+                    suggestionsContainer.innerHTML = '';
+                    suggestionsContainer.style.display = 'none';
                 }
             }
         
-            // Add event listeners for the input fields
-            document.getElementById('search1').addEventListener('keyup', function() {
+            // Add event listeners for both input fields
+            document.getElementById('search1').addEventListener('keyup', function () {
                 getSuggestions('search1', 'suggestions1');
             });
         
-            document.getElementById('search2').addEventListener('keyup', function() {
+            document.getElementById('search2').addEventListener('keyup', function () {
                 getSuggestions('search2', 'suggestions2');
             });
+        
+            // Hide suggestions if user clicks outside
+            document.addEventListener('click', function (event) {
+                const input1 = document.getElementById('search1');
+                const input2 = document.getElementById('search2');
+                const container1 = document.getElementById('suggestions1');
+                const container2 = document.getElementById('suggestions2');
+        
+                if (
+                    !input1.contains(event.target) &&
+                    !container1.contains(event.target)
+                ) {
+                    container1.style.display = 'none';
+                }
+        
+                if (
+                    !input2.contains(event.target) &&
+                    !container2.contains(event.target)
+                ) {
+                    container2.style.display = 'none';
+                }
+            });
         </script>
+        
         
 
         <% if (place1 && place2) { %>
@@ -140,6 +173,13 @@
                     <div class="sen-score">Neutral:<%= place1.Neutral %></div>
                     <div class="sen-score">Negative:<%= place1.Negative %></div>
                     <div class="sen-score">Overall comments: <%= place1.xgboost_predicted_sentiment_label %></div>
+                    <button class="go-on" onclick="window.location.href='/search?keyword=<%= encodeURIComponent(place1.place) %>'">
+                        Go on!
+                    </button>
+                      
+                      
+                      
+                      
             
                 </div>
                 <div class="section_area_grid_item">
@@ -153,10 +193,14 @@
                     <div class="sen-score">Neutral:<%= place2.Neutral %></div>
                     <div class="sen-score">Negative:<%= place2.Negative %></div>
                     <div class="sen-score">Overall comments: <%= place2.xgboost_predicted_sentiment_label %></div>
+                    <button class="go-on" onclick="window.location.href='/search?keyword=<%= encodeURIComponent(place2.place) %>'">
+                        Go on!
+                    </button>
+                      
                 </div>
             </div>  
     </div>
-        <!-- Radar Chart for Sentiment Comparison -->
+        <!-- Bar Chart for Sentiment Comparison -->
         <div class="more-review-container">
             <div class="more-review">Sentiment Comparison</div>
             <canvas id="sentimentRadarChart"></canvas>
@@ -165,7 +209,7 @@
         <script>
             const ctx = document.getElementById('sentimentRadarChart').getContext('2d');
             new Chart(ctx, {
-                type: 'radar',
+                type: 'bar',
                 data: {
                     labels: ['Positive', 'Neutral', 'Negative'],
                     datasets: [
