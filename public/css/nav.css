@@ -153,22 +153,6 @@ form{
 
 
 
-@media (max-width: 1431px) {
-    .nav-con {
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        height: 14rem;
-    }
-
-
-    .category-container{
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }
-
-    
-}
 
 @media (max-width: 899px) {
     .container-rec{
@@ -182,7 +166,7 @@ form{
 }
 
 
-@media (max-width: 768px) {  
+@media (max-width: 1283px) {  
     .logo a{
         margin-left: 0;
     }
