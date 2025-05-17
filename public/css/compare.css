@@ -447,6 +447,29 @@ nav a.active::after { /* Keep highlight on active menu */
 
 /* Responsive adjustments for smaller screens */
 @media screen and (max-width: 512px) {
+  /*============ Navigation Bar ==============*/
+  .nav-con{
+    padding: 1rem 0;
+    flex-direction: column;
+    height: 125px;
+}
+
+.menu{
+    width: 100%;
+    text-align: center;
+    flex-direction: row;
+}
+
+.menu li{
+    margin-left: 0;
+    transition: 0.5s;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.menu li:hover {
+    background: #222;
+}
   .compare-des{
     display: table;
     background:linear-gradient(black, grey);
