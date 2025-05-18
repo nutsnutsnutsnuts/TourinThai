@@ -94,7 +94,16 @@
                         <%= mergedPlace.Description %>
                     </div>
                     <div class="sen-score">
-                        Overall comments: <%= attraction.xgboost_predicted_sentiment_label %>
+                        <% const sentiment = (attraction.xgboost_predicted_sentiment_label || 'Neutral').trim().toLowerCase(); %>
+
+                        Overall comments: 
+                                <% if (sentiment === 'positive') { %>
+                                    Positive <span style="font-size: 1.8em;">😊 </span>
+                                <% } else if (sentiment === 'negative') { %>
+                                    Negative <span style="font-size: 1.8em;">😞</span>
+                                <% } else { %>
+                                    Neutral <span style="font-size: 1.8em;">😐</span>
+                            <% } %>
                     </div>
                     <div class="section-button">
                         <a class="map-btn" href="https://www.google.com/maps/search/<%= mergedPlace.latitude %>,<%= mergedPlace.longitude %>" target="_blank">
@@ -197,7 +206,18 @@
                     <li class="card-item swiper-slide">
                         <!-- To display a sentiment image based on some fields in the review -->
                         <div class="card-title"><%= review.Username || 'Anonymous' %></div>
-                        <div class="card-review">Comment: <%= review.xgboost_predicted_sentiment_label || 'Neutral' %></div>
+                        <% const sentiment = (review.xgboost_predicted_sentiment_label || 'Neutral').trim().toLowerCase(); %>
+
+                        <div class="card-review">
+                            Comment: 
+                                <% if (sentiment === 'positive') { %>
+                                    <span style="font-size: 1.8em;">😊</span>
+                                <% } else if (sentiment === 'negative') { %>
+                                    <span style="font-size: 1.8em;">😞</span>
+                                <% } else { %>
+                                    <span style="font-size: 1.8em;">😐</span>
+                            <% } %>
+                        </div>                          
                         <div class="card-review"><%= review.Review || 'No review text available' %></div>
                     </li>
                 <% }); %>

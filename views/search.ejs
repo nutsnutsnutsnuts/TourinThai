@@ -32,7 +32,7 @@
                                 <div class="center">
                                     <h3><%= item.place %></h3>
                                     <h2>Sentiment Analysis: <%= item.xgboost_predicted_sentiment_label %></h2>
-                                    <h2>Positive score: <%= item.Positive %></h2>
+                                    <h2>Positive score: <%= item.Positive.toFixed(2) %>%</h2>
                                     <p><%= item.cleaned_text%></p>
                                 </div>
                             </div>

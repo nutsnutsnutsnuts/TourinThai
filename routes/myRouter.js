@@ -154,6 +154,7 @@ router.get('/recommendation', async (req, res) => {
                         Image1: { $arrayElemAt: ["$mergedPlace.Image1", 0] }
                     }
                 },
+
                 { $project: { mergedPlace: 0 } }
             ]);
             topPlaces[category] = results;
