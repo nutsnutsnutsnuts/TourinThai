@@ -411,7 +411,7 @@ nav a::after {
 
 
 /* ต้องทำแยกันของแต่ละอันคือเขียน css ด้านบนตัวนี้ก่อนให้เสร็จ แล้วให้ตัวนี้อยู่ล่างสุดของ css ในส่วนนั้น! */
-@media screen and (max-width: 1442px) {
+@media screen and (max-width: 1300px) {
     .section_area_grid{
         display: grid;
         grid-template-columns: 1fr ;
